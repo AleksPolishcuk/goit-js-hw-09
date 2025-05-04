@@ -6,7 +6,6 @@ let formData = {
   message: '',
 };
 
-// 1. Підставляємо дані з localStorage при завантаженні сторінки
 const savedData = localStorage.getItem(STORAGE_KEY);
 if (savedData) {
   try {
@@ -18,14 +17,12 @@ if (savedData) {
   }
 }
 
-// 2. Слухаємо input і оновлюємо formData + localStorage
 form.addEventListener('input', event => {
   const { name, value } = event.target;
   formData[name] = value.trim();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
-// 3. Слухаємо submit
 form.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -38,7 +35,6 @@ form.addEventListener('submit', event => {
 
   console.log(formData);
 
-  // Очищаємо форму, локальне сховище та formData
   form.reset();
   localStorage.removeItem(STORAGE_KEY);
   formData = { email: '', message: '' };
